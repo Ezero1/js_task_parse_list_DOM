@@ -1,7 +1,5 @@
 'use strict';
 
-'use strict';
-
 function parseSalary(salaryStr) {
   return Number(salaryStr.replace(/[^0-9.-]+/g, ''));
 }
@@ -31,4 +29,12 @@ function getEmployees(list) {
 const listElement = document.querySelector('ul');
 
 sortList(listElement);
-getEmployees(listElement);
+
+const employees = getEmployees(listElement);
+const averageSalary =
+  employees.reduce((sum, emp) => sum + emp.salary, 0) / employees.length;
+
+const resultDiv = document.createElement('div');
+
+resultDiv.textContent = 'Середня зарплата: $' + averageSalary.toFixed(2);
+document.body.appendChild(resultDiv);
